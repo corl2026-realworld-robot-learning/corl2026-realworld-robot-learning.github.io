@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>From Simulation Benchmarks to Real-World Robot Learning | CoRL 2026 Workshop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:   #1a3a5c;
+      --blue:   #2563eb;
+      --teal:   #0f9  9a1;
+      --accent: #f59e0b;
+      --light:  #f4f7fb;
+      --border: #dde3ec;
+      --text:   #1f2937;
+      --muted:  #6b7280;
+      --track1: #7c3aed;
+      --track2: #0ea5e9;
+      --track3: #16a34a;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--text); background: #fff; line-height: 1.65; font-size: 15px; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--navy);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    }
+    .nav-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 24px;
+    }
+    .nav-logo { color: #fff; font-weight: 700; font-size: 14px; padding: 14px 0; letter-spacing: 0.03em; }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 0; }
+    .nav-links a {
+      color: rgba(255,255,255,0.82); text-decoration: none;
+      padding: 16px 14px; font-size: 13.5px; font-weight: 500;
+      transition: color 0.15s, background 0.15s;
+      border-bottom: 3px solid transparent;
+    }
+    .nav-links a:hover { color: #fff; background: rgba(255,255,255,0.07); border-bottom-color: var(--accent); }
+
+    /* ─── HERO ─── */
+    #home {
+      background: linear-gradient(135deg, #0f2441 0%, #1a3a5c 45%, #1e4976 100%);
+      color: #fff; padding: 80px 24px 64px;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    #home::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-badge {
+      display: inline-block; background: rgba(245,158,11,0.2); color: var(--accent);
+      border: 1px solid rgba(245,158,11,0.4); border-radius: 20px;
+      padding: 5px 16px; font-size: 12.5px; font-weight: 600;
+      letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 24px;
+    }
+    #home h1 {
+      font-size: clamp(26px, 4.5vw, 44px); font-weight: 700; line-height: 1.2;
+      max-width: 860px; margin: 0 auto 16px; letter-spacing: -0.02em;
+    }
+    #home h1 em { font-style: normal; color: #93c5fd; }
+    .hero-sub {
+      font-size: 16.5px; color: rgba(255,255,255,0.72); max-width: 640px; margin: 0 auto 32px;
+      font-weight: 400;
+    }
+    .hero-question {
+      display: inline-block; max-width: 700px;
+      background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);
+      border-left: 4px solid var(--accent);
+      border-radius: 6px; padding: 16px 22px;
+      font-size: 15px; color: rgba(255,255,255,0.9); font-style: italic; line-height: 1.6;
+      margin-bottom: 36px;
+    }
+    .hero-pills { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 0; }
+    .hero-pill {
+      background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 20px; padding: 6px 16px; font-size: 13px; color: rgba(255,255,255,0.88);
+    }
+    .hero-pill span { margin-right: 6px; }
+
+    /* ─── SECTION WRAPPER ─── */
+    section { padding: 72px 24px; }
+    section:nth-child(even) { background: var(--light); }
+    .section-inner { max-width: 1060px; margin: 0 auto; }
+    .section-head { margin-bottom: 44px; }
+    .section-head h2 { font-size: 28px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+    .section-head p { color: var(--muted); font-size: 15.5px; max-width: 680px; }
+    .section-label {
+      display: inline-block; font-size: 11px; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--blue); background: #eff6ff; border-radius: 3px;
+      padding: 3px 10px; margin-bottom: 10px;
+    }
+
+    /* ─── ABOUT ─── */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+    .about-card {
+      background: #fff; border: 1px solid var(--border); border-radius: 10px;
+      padding: 28px; box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+    .about-card h3 { font-size: 15px; font-weight: 600; color: var(--navy); margin-bottom: 10px; }
+    .about-card p { color: var(--muted); font-size: 14.5px; }
+    .about-card ul { margin: 10px 0 0 18px; color: var(--muted); font-size: 14.5px; }
+    .about-card ul li { margin-bottom: 6px; }
+    .pipeline {
+      display: flex; align-items: center; justify-content: center;
+      gap: 0; flex-wrap: wrap; margin: 40px 0;
+    }
+    .pipe-step {
+      background: var(--navy); color: #fff; border-radius: 8px;
+      padding: 14px 20px; text-align: center; min-width: 140px;
+      font-size: 13px; font-weight: 600;
+    }
+    .pipe-step small { display: block; color: rgba(255,255,255,0.65); font-size: 11px; margin-top: 4px; font-weight: 400; }
+    .pipe-arrow { color: var(--accent); font-size: 22px; margin: 0 10px; }
+
+    /* ─── CHALLENGE TRACKS ─── */
+    .tracks-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .track-card {
+      border-radius: 12px; padding: 32px 26px;
+      border: 1px solid var(--border);
+      background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      position: relative; overflow: hidden;
+    }
+    .track-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+    }
+    .track-card.t1::before { background: var(--track1); }
+    .track-card.t2::before { background: var(--track2); }
+    .track-card.t3::before { background: var(--track3); }
+    .track-num {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; margin-bottom: 12px;
+    }
+    .t1 .track-num { color: var(--track1); }
+    .t2 .track-num { color: var(--track2); }
+    .t3 .track-num { color: var(--track3); }
+    .track-icon { font-size: 32px; margin-bottom: 14px; }
+    .track-card h3 { font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+    .track-card .track-tagline { font-size: 13.5px; color: var(--muted); margin-bottom: 16px; font-style: italic; }
+    .track-card p { font-size: 14px; color: #374151; line-height: 1.65; margin-bottom: 14px; }
+    .track-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .tag {
+      font-size: 11.5px; border-radius: 4px; padding: 3px 9px; font-weight: 500;
+    }
+    .t1 .tag { background: #f3e8ff; color: #6d28d9; }
+    .t2 .tag { background: #e0f2fe; color: #0369a1; }
+    .t3 .tag { background: #dcfce7; color: #166534; }
+    .track-link {
+      display: inline-block; margin-top: 18px; font-size: 13px; font-weight: 600;
+      text-decoration: none; padding: 7px 16px; border-radius: 6px;
+    }
+    .t1 .track-link { background: #f3e8ff; color: var(--track1); }
+    .t2 .track-link { background: #e0f2fe; color: #0369a1; }
+    .t3 .track-link { background: #dcfce7; color: var(--track3); }
+    .track-link:hover { filter: brightness(0.92); }
+
+    /* ─── SPEAKERS ─── */
+    .speakers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 24px;
+    }
+    .speaker-card {
+      text-align: center; background: #fff;
+      border: 1px solid var(--border); border-radius: 10px;
+      padding: 24px 16px 18px; box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .speaker-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.1); transform: translateY(-2px); }
+    .avatar {
+      width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 14px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; font-weight: 700; color: #fff; flex-shrink: 0;
+    }
+    .speaker-card h4 { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+    .speaker-card .affil { font-size: 12px; color: var(--muted); margin-bottom: 8px; }
+    .speaker-status {
+      display: inline-block; font-size: 10.5px; font-weight: 600;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      border-radius: 3px; padding: 2px 7px;
+    }
+    .status-confirmed { background: #dcfce7; color: #166534; }
+    .status-tentative { background: #fef9c3; color: #854d0e; }
+    .status-panelist  { background: #ede9fe; color: #5b21b6; }
+    .speaker-topic { font-size: 12px; color: #4b5563; margin-top: 8px; font-style: italic; line-height: 1.4; }
+
+    .speakers-subsection { margin-bottom: 48px; }
+    .speakers-subsection h3 { font-size: 17px; font-weight: 600; color: var(--navy); margin-bottom: 20px; padding-bottom: 8px; border-bottom: 2px solid var(--border); }
+
+    /* ─── SCHEDULE ─── */
+    .schedule-table { width: 100%; border-collapse: collapse; font-size: 14.5px; }
+    .schedule-table thead th {
+      background: var(--navy); color: #fff; padding: 12px 16px;
+      text-align: left; font-weight: 600; font-size: 13px; letter-spacing: 0.04em;
+    }
+    .schedule-table tbody tr:nth-child(odd) { background: #f9fafb; }
+    .schedule-table td { padding: 11px 16px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    .schedule-table td:first-child { white-space: nowrap; color: var(--navy); font-weight: 600; font-size: 13.5px; width: 130px; }
+    .schedule-table td.type { width: 150px; }
+    .sched-tag {
+      display: inline-block; font-size: 11px; font-weight: 600;
+      padding: 2px 8px; border-radius: 4px;
+    }
+    .sched-keynote  { background: #dbeafe; color: #1d4ed8; }
+    .sched-opening  { background: #fce7f3; color: #9d174d; }
+    .sched-awards   { background: #fef3c7; color: #92400e; }
+    .sched-challenge { background: #d1fae5; color: #065f46; }
+    .sched-demo     { background: #ede9fe; color: #4c1d95; }
+    .sched-poster   { background: #e0f2fe; color: #075985; }
+    .sched-break    { background: #f3f4f6; color: #6b7280; }
+
+    /* ─── IMPORTANT DATES ─── */
+    .dates-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+    .dates-group h3 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 16px; padding-left: 14px; border-left: 3px solid var(--blue); }
+    .date-item {
+      display: flex; justify-content: space-between; align-items: baseline;
+      padding: 11px 0; border-bottom: 1px dashed var(--border);
+    }
+    .date-item:last-child { border-bottom: none; }
+    .date-label { font-size: 14px; color: var(--text); }
+    .date-val { font-size: 13.5px; font-weight: 600; color: var(--blue); white-space: nowrap; margin-left: 16px; }
+    .date-val.passed { color: var(--muted); text-decoration: line-through; }
+
+    .cfp-box {
+      background: linear-gradient(135deg, #eff6ff, #f0fdf4);
+      border: 1px solid #bfdbfe; border-radius: 10px;
+      padding: 28px 32px; margin-top: 40px;
+    }
+    .cfp-box h3 { font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 12px; }
+    .cfp-box p { font-size: 14.5px; color: #374151; margin-bottom: 10px; }
+    .cfp-box ul { margin: 0 0 0 20px; color: #374151; font-size: 14.5px; }
+    .cfp-box ul li { margin-bottom: 6px; }
+    .submit-btn {
+      display: inline-block; margin-top: 18px; background: var(--blue); color: #fff;
+      text-decoration: none; padding: 10px 24px; border-radius: 7px;
+      font-weight: 600; font-size: 14px; transition: background 0.15s;
+    }
+    .submit-btn:hover { background: #1d4ed8; }
+
+    /* ─── ORGANIZERS ─── */
+    .org-section { margin-bottom: 48px; }
+    .org-section h3 {
+      font-size: 17px; font-weight: 700; color: var(--navy);
+      margin-bottom: 20px; padding-bottom: 8px; border-bottom: 2px solid var(--border);
+    }
+    .org-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      gap: 18px;
+    }
+    .org-card {
+      display: flex; align-items: center; gap: 12px;
+      background: #fff; border: 1px solid var(--border);
+      border-radius: 8px; padding: 14px;
+    }
+    .org-avatar {
+      width: 44px; height: 44px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px; font-weight: 700; color: #fff; overflow: hidden;
+    }
+    .org-avatar img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: top; display: block; }
+    .org-avatar.has-photo { background: none; }
+    .avatar img { width: 80px; height: 80px; border-radius: 50%; object-fit: cover; object-position: top; display: block; margin: 0 auto; }
+    .avatar.has-photo { background: none; }
+    .org-info h4 { font-size: 13.5px; font-weight: 600; color: var(--navy); }
+    .org-info p  { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--navy); color: rgba(255,255,255,0.7);
+      text-align: center; padding: 36px 24px; font-size: 13.5px;
+    }
+    footer a { color: rgba(255,255,255,0.85); text-decoration: none; }
+    footer a:hover { color: #fff; }
+    footer .footer-logo { font-weight: 700; color: #fff; font-size: 15px; margin-bottom: 10px; }
+    footer .footer-logo span { color: var(--accent); }
+
+    /* ─── DIVIDER ─── */
+    .divider { height: 1px; background: var(--border); margin: 40px 0; }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      .about-grid, .tracks-grid, .dates-grid { grid-template-columns: 1fr; }
+      .pipeline { flex-direction: column; }
+      .pipe-arrow { transform: rotate(90deg); }
+      .nav-links a { padding: 16px 10px; font-size: 12px; }
+    }
+    @media (max-width: 500px) {
+      .nav-links { display: none; }
+    }
+
+    /* colour palette for avatars */
+    .c0 { background: #4f46e5; }
+    .c1 { background: #0891b2; }
+    .c2 { background: #059669; }
+    .c3 { background: #dc2626; }
+    .c4 { background: #7c3aed; }
+    .c5 { background: #c2410c; }
+    .c6 { background: #1d4ed8; }
+    .c7 { background: #0f766e; }
+    .c8 { background: #9333ea; }
+    .c9 { background: #b45309; }
+  </style>
+</head>
+<body>
+
+<!-- ─── NAVIGATION ─── -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">CoRL 2026 <span>Workshop</span></div>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#challenges">Challenges</a>
+      <a href="#speakers">Speakers</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#cfp">Call for Papers</a>
+      <a href="#organizers">Organizers</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section id="home">
+  <div class="hero-badge">CoRL 2026 Workshop</div>
+  <h1>From <em>Simulation Benchmarks</em> to Real-World Robot Learning</h1>
+  <p class="hero-sub">Conference on Robot Learning (CoRL) 2026 &nbsp;·&nbsp; Half-Day Workshop &nbsp;·&nbsp; Nov 12, 2026 &nbsp;·&nbsp; Austin, Texas, USA</p>
+  <div class="hero-question">
+    "Simulation is the most scalable training ground for embodied AI — how do we design
+    benchmarks and evaluation protocols so that simulation-trained policies reliably
+    transfer to real-world deployment?"
+  </div>
+  <div class="hero-pills">
+    <div class="hero-pill"><span>🏠</span>BEHAVIOR Challenge</div>
+    <div class="hero-pill"><span>♟️</span>RoboChess Challenge</div>
+    <div class="hero-pill"><span>🤖</span>RoboEval Challenge</div>
+  </div>
+</section>
+
+<!-- ─── ABOUT ─── -->
+<section id="about">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-label">Overview</div>
+      <h2>Workshop Description</h2>
+      <p>A community-wide effort to unify simulation benchmarking and real-world robot deployment.</p>
+    </div>
+
+    <p style="font-size:15.5px; color:#374151; max-width:860px; line-height:1.8; margin-bottom:32px;">
+      Simulation has become the engine of modern embodied AI. Physics-grounded environments
+      like BEHAVIOR provide the scale, safety, and reproducibility that physical data collection
+      cannot — enabling agents to develop high-level reasoning, long-horizon planning, and
+      dexterous bimanual manipulation across thousands of everyday scenarios. Rigorous diagnostic
+      frameworks like RoboEval further deepen what we can learn from simulation by instrumenting
+      every task with stage-level metrics that reveal not just whether a policy succeeds, but
+      precisely how and why it fails. The frontier question is therefore not whether to train in
+      simulation, but how to ensure that the capabilities learned at scale in simulation carry
+      over robustly to the physical world. This workshop unites benchmark designers, robot-learning
+      researchers, foundation-model developers, and real-robot practitioners to address that challenge together.
+    </p>
+
+    <!-- Pipeline -->
+    <div class="pipeline">
+      <div class="pipe-step">Large-Scale<br/>Simulation Training<small>GPU-Accelerated Policy Learning</small></div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step">Rigorous Benchmark<br/>Evaluation<small>Standardized Metrics &amp; Reproducibility</small></div>
+      <div class="pipe-arrow">→</div>
+      <div class="pipe-step">Real-World<br/>Transfer<small>Robust Deployment &amp; Generalization</small></div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Core challenges -->
+    <div class="section-head">
+      <div class="section-label">Research Questions</div>
+      <h2>Core Challenges</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-card">
+        <h3>🏠 Simulation as the Best Training Ground</h3>
+        <p>Rich, physics-grounded environments enable agents to practice thousands of household tasks
+           at scale — from high-level reasoning and long-range navigation to dexterous bimanual
+           manipulation — far beyond what physical data collection alone can provide.</p>
+      </div>
+      <div class="about-card">
+        <h3>🔬 Beyond Binary Success: Diagnostic Evaluation</h3>
+        <p>Task completion alone is not enough. Stage-level metrics that measure outcome, efficiency,
+           bimanual coordination, and safety reveal precisely where and why policies fail, enabling
+           targeted improvement rather than opaque leaderboard scores.</p>
+      </div>
+      <div class="about-card">
+        <h3>🎯 From Demonstration to True Task Solving</h3>
+        <p>Many policies succeed on curated demonstrations but fail to generalize to diverse initial
+           states and long-horizon settings. Closing this gap requires evaluation protocols that
+           stress-test policies across a wide range of conditions in simulation before real-world deployment.</p>
+      </div>
+      <div class="about-card">
+        <h3>🚀 Sim-to-Real Deployment</h3>
+        <p>Translating simulation-trained policies to physical robots remains an open challenge.
+           Robustness to lighting, object position, sensor noise, and embodiment differences must
+           be systematically evaluated so that strong simulation performance predicts real-world capability.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:40px; background:#fff; border:1px solid var(--border); border-left:4px solid var(--blue); border-radius:8px; padding:22px 28px;">
+      <strong style="font-size:14px; color:var(--navy);">Embodied AI Challenge Suite</strong>
+      <p style="margin-top:8px; font-size:14.5px; color:#374151;">
+        The workshop is organized around the <strong>CoRL 2026 Embodied AI Benchmark and Sim-to-Real Challenge Suite</strong>,
+        consisting of three complementary tracks. Each track retains its canonical technical infrastructure,
+        evaluation protocol, leaderboard, and prizes. Across tracks, participants will report a shared set of
+        outcome, efficiency, robustness, safety, computational-cost, and reproducibility measures, synthesized
+        into a community white paper.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CHALLENGE TRACKS ─── -->
+<section id="challenges">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-label">Challenge Suite</div>
+      <h2>Three Challenge Tracks</h2>
+      <p>Independent leaderboards, codebases, and prize structures—unified by a shared evaluation protocol.</p>
+    </div>
+
+    <div class="tracks-grid">
+
+      <!-- Track 1: BEHAVIOR -->
+      <div class="track-card t1">
+        <div class="track-num">Track 1</div>
+        <div class="track-icon">🏠</div>
+        <h3>BEHAVIOR Long-Horizon Household Challenge</h3>
+        <p class="track-tagline">Generalist embodied AI in house-scale everyday scenes</p>
+        <p>1,000 household activities across 50 scenes and 10,000 objects, powered by the
+           Isaac Sim–based BEHAVIOR simulator. Agents must reason, navigate, and execute
+           dexterous bimanual manipulation over long horizons.</p>
+        <p><strong>Evaluation:</strong> Task completion rate, efficiency (total movements),
+           20,000 near-optimal human-demonstrated trajectories with stage-level language annotations.</p>
+        <div class="track-tags">
+          <span class="tag">Long-Horizon</span>
+          <span class="tag">Bimanual</span>
+          <span class="tag">Navigation</span>
+          <span class="tag">IsaacSim</span>
+        </div>
+        <a class="track-link" href="https://behavior.stanford.edu" target="_blank">behavior.stanford.edu ↗</a>
+      </div>
+
+      <!-- Track 2: RoboChess -->
+      <div class="track-card t2">
+        <div class="track-num">Track 2</div>
+        <div class="track-icon">♟️</div>
+        <h3>RoboChess Sim-to-Real Manipulation Challenge</h3>
+        <p class="track-tagline">From simulation training to real-world robot deployment</p>
+        <p>Policies are trained in GPU-accelerated simulation and must generalize to physical robot
+           hardware. Agents perceive a chessboard, plan long-horizon move sequences, and execute
+           dexterous piece manipulation across multiple real-world robot embodiments.</p>
+        <p><strong>Evaluation:</strong> Standardized manipulation metrics measuring planning accuracy,
+           perception robustness, and execution reliability under real-world perturbations.</p>
+        <div class="track-tags">
+          <span class="tag">Sim-to-Real</span>
+          <span class="tag">GPU-Accelerated</span>
+          <span class="tag">Multi-Embodiment</span>
+          <span class="tag">Real-World</span>
+        </div>
+        <a class="track-link" href="https://sites.google.com/view/corl-workshop-robochess" target="_blank">Challenge Website ↗</a>
+      </div>
+
+      <!-- Track 3: RoboEval -->
+      <div class="track-card t3">
+        <div class="track-num">Track 3</div>
+        <div class="track-icon">🤖</div>
+        <h3>RoboEval Diagnostic Bimanual Challenge</h3>
+        <p class="track-tagline">Stage-level failure diagnosis for bimanual manipulation</p>
+        <p>A structured evaluation framework for bimanual robotic manipulation that augments
+           binary success with behavioral and outcome metrics. Every task is instrumented with
+           stage definitions to localize failure modes and test robustness to spatial variation.</p>
+        <p><strong>Evaluation:</strong> Outcome (stage completion), Efficiency, Bimanual Coordination,
+           Safety &amp; Stability. 3,000+ VR-teleoperated expert demonstrations.</p>
+        <div class="track-tags">
+          <span class="tag">Bimanual</span>
+          <span class="tag">Stage-Level</span>
+          <span class="tag">Failure Analysis</span>
+          <span class="tag">MuJoCo</span>
+        </div>
+        <a class="track-link" href="https://robo-eval.github.io" target="_blank">robo-eval.github.io ↗</a>
+      </div>
+
+    </div>
+
+    <!-- Shared metrics banner -->
+    <div style="margin-top:36px; background:var(--navy); color:#fff; border-radius:10px; padding:24px 32px;">
+      <div style="display:flex; flex-wrap:wrap; gap:24px; align-items:center;">
+        <div style="flex:1; min-width:200px;">
+          <div style="font-size:13px; color:rgba(255,255,255,0.6); margin-bottom:4px; letter-spacing:0.05em; text-transform:uppercase;">Shared Cross-Track Metrics</div>
+          <div style="font-size:16px; font-weight:600;">Unified Evaluation Protocol</div>
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:10px;">
+          <span style="background:rgba(255,255,255,0.12); border-radius:5px; padding:6px 14px; font-size:13px;">✓ Outcome &amp; Completion</span>
+          <span style="background:rgba(255,255,255,0.12); border-radius:5px; padding:6px 14px; font-size:13px;">✓ Efficiency</span>
+          <span style="background:rgba(255,255,255,0.12); border-radius:5px; padding:6px 14px; font-size:13px;">✓ Robustness</span>
+          <span style="background:rgba(255,255,255,0.12); border-radius:5px; padding:6px 14px; font-size:13px;">✓ Safety</span>
+          <span style="background:rgba(255,255,255,0.12); border-radius:5px; padding:6px 14px; font-size:13px;">✓ Compute Cost</span>
+          <span style="background:rgba(255,255,255,0.12); border-radius:5px; padding:6px 14px; font-size:13px;">✓ Reproducibility</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── INVITED SPEAKERS ─── -->
+<section id="speakers">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-label">Invited Speakers</div>
+      <h2>Invited Speakers</h2>
+      <p>Leading researchers from academia and industry sharing perspectives across robot learning, simulation, and real-world deployment.</p>
+    </div>
+
+    <!-- Keynote Speakers -->
+    <div class="speakers-subsection">
+      <h3>Keynote Speakers</h3>
+      <div class="speakers-grid">
+
+        <div class="speaker-card">
+          <div class="avatar has-photo"><img src="https://www.guannanqu.com/images/profile.jpeg" alt="Guannan Qu"></div>
+          <h4>Guannan Qu</h4>
+          <div class="affil">Carnegie Mellon University</div>
+          <span class="speaker-status status-confirmed">In-Person</span>
+          <div class="speaker-topic">Robot policy learning paradigms; reinforcement learning, imitation learning, and diffusion policies</div>
+        </div>
+
+        <div class="speaker-card">
+          <div class="avatar has-photo"><img src="https://yilundu.github.io/images/yilun8.png" alt="Yilun Du"></div>
+          <h4>Yilun Du</h4>
+          <div class="affil">Harvard University</div>
+          <span class="speaker-status status-tentative">Pending</span>
+          <div class="speaker-topic">Generative models and compositional planning for robot learning</div>
+        </div>
+
+        <div class="speaker-card">
+          <div class="avatar has-photo"><img src="https://scholar.googleusercontent.com/citations?view_op=view_photo&user=x78TL58AAAAJ&citpid=6" alt="Chen Tang"></div>
+          <h4>Chen Tang</h4>
+          <div class="affil">UC Los Angeles</div>
+          <span class="speaker-status status-confirmed">In-Person</span>
+          <div class="speaker-topic">Deep RL, imitation learning, and control theory for principled, generalizable robot policies</div>
+        </div>
+
+        <div class="speaker-card">
+          <div class="avatar has-photo"><img src="https://behavior.stanford.edu/assets/people/li_fei_fei.jpg" alt="Fei-Fei Li"></div>
+          <h4>Fei-Fei Li</h4>
+          <div class="affil">Stanford University</div>
+          <span class="speaker-status status-confirmed">In-Person</span>
+          <div class="speaker-topic">Embodied AI, large-scale visual intelligence, and the future of human-centered AI</div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── SCHEDULE ─── -->
+<section id="schedule">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-label">Program</div>
+      <h2>Workshop Schedule</h2>
+      <p>Half-day workshop with keynotes, challenge awards, live demo, poster session, and breakout discussions.</p>
+    </div>
+
+    <table class="schedule-table">
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th>Type</th>
+          <th>Session</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>8:00 – 8:10</td>
+          <td class="type"><span class="sched-tag sched-opening">Opening</span></td>
+          <td><strong>Opening Remarks</strong><br/><span style="font-size:13px; color:var(--muted);">Workshop organizers</span></td>
+        </tr>
+        <tr>
+          <td>8:10 – 8:30</td>
+          <td class="type"><span class="sched-tag sched-keynote">Keynote</span></td>
+          <td><strong>Keynote Talk 1</strong><br/><span style="font-size:13px; color:var(--muted);">Invited speaker</span></td>
+        </tr>
+        <tr>
+          <td>8:30 – 9:00</td>
+          <td class="type"><span class="sched-tag sched-keynote">Keynote</span></td>
+          <td><strong>Keynote Talk 2</strong><br/><span style="font-size:13px; color:var(--muted);">Invited speaker</span></td>
+        </tr>
+        <tr>
+          <td>9:00 – 9:15</td>
+          <td class="type"><span class="sched-tag sched-awards">Awards</span></td>
+          <td>
+            <strong>Track 1 &amp; 3 Challenge Awards</strong><br/>
+            <span style="font-size:13px; color:var(--muted);">BEHAVIOR &amp; RoboEval results presented by Fei-Fei Li / Jiajun Wu</span>
+          </td>
+        </tr>
+        <tr>
+          <td>9:15 – 9:30</td>
+          <td class="type"><span class="sched-tag sched-challenge">Spotlights</span></td>
+          <td><strong>Challenge Winner Spotlights 1 &amp; 2</strong><br/><span style="font-size:13px; color:var(--muted);">Top-performing teams from Track 1 &amp; 3 present their methods</span></td>
+        </tr>
+        <tr>
+          <td>9:30 – 10:00</td>
+          <td class="type"><span class="sched-tag sched-keynote">Keynote</span></td>
+          <td><strong>Keynote Talk 3</strong><br/><span style="font-size:13px; color:var(--muted);">Invited speaker</span></td>
+        </tr>
+        <tr>
+          <td>10:00 – 10:30</td>
+          <td class="type"><span class="sched-tag sched-keynote">Keynote</span></td>
+          <td><strong>Keynote Talk 4</strong><br/><span style="font-size:13px; color:var(--muted);">Invited speaker</span></td>
+        </tr>
+        <tr>
+          <td>10:30 – 10:50</td>
+          <td class="type"><span class="sched-tag sched-awards">Awards</span></td>
+          <td>
+            <strong>Track 2 Challenge Awards &amp; Spotlight</strong><br/>
+            <span style="font-size:13px; color:var(--muted);">RoboChess results &amp; winner presentations</span>
+          </td>
+        </tr>
+        <tr>
+          <td>10:50 – 11:00</td>
+          <td class="type"><span class="sched-tag sched-demo">Demo</span></td>
+          <td><strong>RoboChess Live Robot Demo</strong><br/><span style="font-size:13px; color:var(--muted);">Live demonstration of challenge-winning policies on physical hardware</span></td>
+        </tr>
+        <tr>
+          <td>11:00 – 12:00</td>
+          <td class="type"><span class="sched-tag sched-poster">Poster / Panel</span></td>
+          <td>
+            <strong>Best Paper Spotlights · Poster Session · Breakout Discussion · White Paper</strong><br/>
+            <span style="font-size:13px; color:var(--muted);">2 × 5-min best paper talks · interactive poster + student mentoring session · breakout group discussion on cross-benchmark findings · white paper topic brainstorm</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ─── CALL FOR PAPERS ─── -->
+<section id="cfp">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-label">Call for Papers</div>
+      <h2>Important Dates &amp; Submission</h2>
+    </div>
+
+    <div class="dates-grid">
+      <div class="dates-group">
+        <h3>Paper Track</h3>
+        <div class="date-item">
+          <span class="date-label">Paper Submission Deadline</span>
+          <span class="date-val">Sep 20, 2026</span>
+        </div>
+        <div class="date-item">
+          <span class="date-label">Acceptance Notification</span>
+          <span class="date-val">Oct 4, 2026</span>
+        </div>
+        <div class="date-item">
+          <span class="date-label">Final Schedule Announced</span>
+          <span class="date-val">Nov 1, 2026</span>
+        </div>
+        <div class="date-item">
+          <span class="date-label">Workshop</span>
+          <span class="date-val">Nov 12, 2026</span>
+        </div>
+      </div>
+
+      <div class="dates-group">
+        <h3>Challenge Track</h3>
+        <div class="date-item">
+          <span class="date-label">Online Challenge Launch</span>
+          <span class="date-val"><a href="#challenges" style="color:var(--blue); font-weight:600;">See challenge pages ↗</a></span>
+        </div>
+        <div class="date-item">
+          <span class="date-label">Submission Deadline</span>
+          <span class="date-val">Oct 16, 2026</span>
+        </div>
+        <div class="date-item">
+          <span class="date-label">Winners Announcement</span>
+          <span class="date-val">Nov 4, 2026</span>
+        </div>
+        <div class="date-item">
+          <span class="date-label">Leaderboard Updates</span>
+          <span class="date-val">Rolling</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cfp-box">
+      <h3>Paper Submission Guidelines</h3>
+      <p>We welcome short papers (up to 5 pages, excluding references) directly relevant to the workshop themes, with particular emphasis on:</p>
+      <ul>
+        <li>Robot learning systems addressing <strong>evaluation, robustness, and sim-to-real transfer</strong></li>
+        <li>Novel simulation benchmarks, environments, or evaluation protocols for embodied AI</li>
+        <li>Empirical results on reproducible benchmarks or methods for standardized evaluation</li>
+        <li>Technical reports from challenge participants (Tracks 1, 2, and 3)</li>
+        <li>Foundation models and large-scale pretraining pipelines for robot learning</li>
+      </ul>
+      <p style="margin-top:12px; font-size:14px; color:var(--muted);">
+        We accept research papers not previously published or to be presented at the main conference.
+        Submissions will be reviewed for technical quality and relevance. Accepted papers will be
+        presented as spotlights or posters, prioritizing interactive discussion.
+        Submissions via <strong>OpenReview</strong>.
+      </p>
+      <a class="submit-btn" href="#" onclick="alert('Submission portal coming soon!')">Submit on OpenReview ↗</a>
+      &nbsp;
+      <a class="submit-btn" href="#challenges" style="background:var(--navy);">Join a Challenge ↗</a>
+    </div>
+
+    <!-- Sponsored prizes -->
+    <div style="margin-top:28px; background:#fff; border:1px solid var(--border); border-radius:10px; padding:22px 28px;">
+      <strong style="color:var(--navy);">💰 Prizes &amp; Support</strong>
+      <p style="margin-top:8px; font-size:14.5px; color:#374151;">
+        For details on challenge prizes, compute credits, and travel grants, please visit the individual challenge pages.
+      </p>
+      <a class="submit-btn" href="#challenges" style="margin-top:12px; background:var(--navy);">View Challenge Pages ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── ORGANIZERS ─── -->
+<section id="organizers">
+  <div class="section-inner">
+    <div class="section-head">
+      <div class="section-label">Organizers</div>
+      <h2>Workshop Organizers</h2>
+      <p>A diverse team spanning academia and industry across multiple institutions.</p>
+    </div>
+
+    <!-- General Workshop Organizers -->
+    <div class="org-section">
+      <h3>General Organizers</h3>
+      <div class="org-grid">
+        <div class="org-card">
+          <div class="org-avatar has-photo"><img src="https://scholar.googleusercontent.com/citations?view_op=view_photo&user=6LYI6uUAAAAJ&citpid=5" alt="Zhenzhen Li"></div>
+          <div class="org-info"><h4>Zhenzhen Li</h4><p>NVIDIA</p></div>
+        </div>
+        <div class="org-card">
+          <div class="org-avatar has-photo"><img src="https://scholar.googleusercontent.com/citations?view_op=view_photo&user=l1h5kY8AAAAJ&citpid=5" alt="Yizhou Zhao"></div>
+          <div class="org-info"><h4>Yizhou Zhao</h4><p>NVIDIA</p></div>
+        </div>
+        <div class="org-card">
+          <div class="org-avatar has-photo"><img src="https://scholar.googleusercontent.com/citations?view_op=view_photo&user=O3p4CIQAAAAJ&citpid=2" alt="Jianwen Xie"></div>
+          <div class="org-info"><h4>Jianwen Xie</h4><p>Lambda, Inc.</p></div>
+        </div>
+        <div class="org-card">
+          <div class="org-avatar has-photo"><img src="https://scholar.googleusercontent.com/citations?view_op=view_photo&user=kfW01ekAAAAJ&citpid=4" alt="Zijian Du"></div>
+          <div class="org-info"><h4>Zijian (Leo) Du</h4><p>NVIDIA</p></div>
+        </div>
+        <div class="org-card">
+          <div class="org-avatar has-photo"><img src="https://behavior.stanford.edu/assets/people/ruohan_zhang.jpg" alt="Ruohan Zhang"></div>
+          <div class="org-info"><h4>Ruohan Zhang</h4><p>Northwestern University</p></div>
+        </div>
+        <div class="org-card">
+          <div class="org-avatar has-photo"><img src="https://behavior.stanford.edu/assets/people/raven_huang.png" alt="Huang Huang"></div>
+          <div class="org-info"><h4>Huang (Raven) Huang</h4><p>Stanford University</p></div>
+        </div>
+        <div class="org-card">
+          <div class="org-avatar has-photo"><img src="https://jiafei1224.github.io/images/bio-photo.jpg" alt="Jiafei Duan"></div>
+          <div class="org-info"><h4>Jiafei Duan</h4><p>NUS</p></div>
+        </div>
+        <div class="org-card">
+          <div class="org-avatar has-photo"><img src="https://behavior.stanford.edu/assets/people/jiajun_wu.jpg" alt="Jiajun Wu"></div>
+          <div class="org-info"><h4>Jiajun Wu</h4><p>Stanford University</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Challenge Organizers header -->
+    <div style="margin-bottom:24px; padding-bottom:8px; border-bottom:2px solid var(--border);">
+      <div class="section-label" style="margin-bottom:0;">Challenge Organizers</div>
+    </div>
+
+    <!-- Track 2: RoboChess -->
+    <div class="org-section">
+      <h3>♟️ Track 2 — RoboChess Challenge</h3>
+      <div class="org-grid">
+        <div class="org-card">
+          <div class="org-avatar has-photo"><img src="https://scholar.googleusercontent.com/citations?view_op=view_photo&user=6LYI6uUAAAAJ&citpid=5" alt="Zhenzhen Li"></div>
+          <div class="org-info"><h4>Zhenzhen Li</h4><p>NVIDIA</p></div>
+        </div>
+        <div class="org-card">
+          <div class="org-avatar has-photo"><img src="https://scholar.googleusercontent.com/citations?view_op=view_photo&user=l1h5kY8AAAAJ&citpid=5" alt="Yizhou Zhao"></div>
+          <div class="org-info"><h4>Yizhou Zhao</h4><p>NVIDIA</p></div>
+        </div>
+        <div class="org-card">
+          <div class="org-avatar has-photo"><img src="https://scholar.googleusercontent.com/citations?view_op=view_photo&user=O3p4CIQAAAAJ&citpid=2" alt="Jianwen Xie"></div>
+          <div class="org-info"><h4>Jianwen Xie</h4><p>Lambda, Inc.</p></div>
+        </div>
+        <div class="org-card">
+          <div class="org-avatar has-photo"><img src="https://scholar.googleusercontent.com/citations?view_op=view_photo&user=kfW01ekAAAAJ&citpid=4" alt="Zijian Du"></div>
+          <div class="org-info"><h4>Zijian Du</h4><p>NVIDIA</p></div>
+        </div>
+        <div class="org-card">
+          <div class="org-avatar has-photo"><img src="https://yuheng-li.github.io/images/yosemite3.jpg" alt="Yuheng Li"></div>
+          <div class="org-info"><h4>Yuheng Li</h4><p>Adobe Research</p></div>
+        </div>
+        <div class="org-card">
+          <div class="org-avatar has-photo"><img src="https://fmu2.github.io/assets/img/photo.jpg" alt="Fangzhou Mu"></div>
+          <div class="org-info"><h4>Fangzhou Mu</h4><p>Google Research</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Track 1 & 3: BEHAVIOR + RoboEval -->
+    <div class="org-section">
+      <h3>🏠🤖 Track 1 &amp; 3 — BEHAVIOR &amp; RoboEval Challenge</h3>
+      <div class="org-grid">
+        <div class="org-card">
+          <div class="org-avatar has-photo"><img src="https://behavior.stanford.edu/assets/people/li_fei_fei.jpg" alt="Fei-Fei Li"></div>
+          <div class="org-info"><h4>Fei-Fei Li</h4><p>Stanford University</p></div>
+        </div>
+        <div class="org-card">
+          <div class="org-avatar has-photo"><img src="https://behavior.stanford.edu/assets/people/jiajun_wu.jpg" alt="Jiajun Wu"></div>
+          <div class="org-info"><h4>Jiajun Wu</h4><p>Stanford University</p></div>
+        </div>
+        <div class="org-card">
+          <div class="org-avatar has-photo"><img src="https://behavior.stanford.edu/assets/people/ruohan_zhang.jpg" alt="Ruohan Zhang"></div>
+          <div class="org-info"><h4>Ruohan Zhang</h4><p>Northwestern University</p></div>
+        </div>
+        <div class="org-card">
+          <div class="org-avatar has-photo"><img src="https://behavior.stanford.edu/assets/people/manling_li.jpg" alt="Manling Li"></div>
+          <div class="org-info"><h4>Manling Li</h4><p>Northwestern University</p></div>
+        </div>
+        <div class="org-card">
+          <div class="org-avatar has-photo"><img src="https://behavior.stanford.edu/assets/people/wensi_ai.jpg" alt="Wensi Ai"></div>
+          <div class="org-info"><h4>Wensi Ai</h4><p>Stanford University</p></div>
+        </div>
+        <div class="org-card">
+          <div class="org-avatar has-photo"><img src="https://jiafei1224.github.io/images/bio-photo.jpg" alt="Jiafei Duan"></div>
+          <div class="org-info"><h4>Jiafei Duan</h4><p>NUS</p></div>
+        </div>
+        <div class="org-card">
+          <div class="org-avatar c2">YW</div>
+          <div class="org-info"><h4>Yi Ru Wang</h4><p>University of Washington</p></div>
+        </div>
+        <div class="org-card">
+          <div class="org-avatar has-photo"><img src="https://behavior.stanford.edu/assets/people/raven_huang.png" alt="Huang Huang"></div>
+          <div class="org-info"><h4>Huang Huang</h4><p>Stanford University</p></div>
+        </div>
+        <div class="org-card">
+          <div class="org-avatar has-photo"><img src="https://behavior.stanford.edu/assets/people/stef-ren.jpg" alt="Stef Ren"></div>
+          <div class="org-info"><h4>Stef Ren</h4><p>Stanford University</p></div>
+        </div>
+        <div class="org-card">
+          <div class="org-avatar has-photo"><img src="https://behavior.stanford.edu/assets/people/minyeong-kim.jpg" alt="Minyeong Kim"></div>
+          <div class="org-info"><h4>Minyeong Kim</h4><p>Stanford University</p></div>
+        </div>
+        <div class="org-card">
+          <div class="org-avatar has-photo"><img src="https://behavior.stanford.edu/assets/people/yalcin-tur.jpg" alt="Yalcin Tur"></div>
+          <div class="org-info"><h4>Yalcin Tur</h4><p>Stanford University</p></div>
+        </div>
+        <div class="org-card">
+          <div class="org-avatar has-photo"><img src="https://behavior.stanford.edu/assets/people/andi-xu.jpg" alt="Andi Xu"></div>
+          <div class="org-info"><h4>Andi Xu</h4><p>Stanford University</p></div>
+        </div>
+        <div class="org-card">
+          <div class="org-avatar has-photo"><img src="https://behavior.stanford.edu/assets/people/lynn-jin.jpg" alt="Lynn Jin"></div>
+          <div class="org-info"><h4>Lynn Jin</h4><p>USC</p></div>
+        </div>
+        <div class="org-card">
+          <div class="org-avatar has-photo"><img src="https://behavior.stanford.edu/assets/people/brenda-chen.jpg" alt="Brenda Chen"></div>
+          <div class="org-info"><h4>Brenda Chen</h4><p>Carnegie Mellon University</p></div>
+        </div>
+        <div class="org-card">
+          <div class="org-avatar has-photo"><img src="https://behavior.stanford.edu/assets/people/cemgokmen.jpg" alt="Cem Gokmen"></div>
+          <div class="org-info"><h4>Cem Gokmen</h4><p>Google DeepMind</p></div>
+        </div>
+        <div class="org-card">
+          <div class="org-avatar has-photo"><img src="https://behavior.stanford.edu/assets/people/chengshu.jpg" alt="Chengshu Li"></div>
+          <div class="org-info"><h4>Chengshu Li</h4><p>OpenAI</p></div>
+        </div>
+        <div class="org-card">
+          <div class="org-avatar has-photo"><img src="https://behavior.stanford.edu/assets/people/josiah_wong.jpg" alt="Josiah Wong"></div>
+          <div class="org-info"><h4>Josiah Wong</h4><p>OpenAI</p></div>
+        </div>
+        <div class="org-card">
+          <div class="org-avatar has-photo"><img src="https://behavior.stanford.edu/assets/people/hang_yin.png" alt="Hang Yin"></div>
+          <div class="org-info"><h4>Hang Yin</h4><p>OpenAI</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Commitments -->
+    <div style="background:#fff; border:1px solid var(--border); border-radius:8px; padding:22px 28px; margin-top:8px;">
+      <strong style="color:var(--navy); font-size:14px;">Organizer Commitments</strong>
+      <ul style="margin:10px 0 0 20px; font-size:14px; color:#374151; line-height:1.9;">
+        <li>At least one organizer will attend CoRL 2026 in person</li>
+        <li>Organizers will attend the CoRL 2026 workshop organizers' meeting</li>
+        <li>Organizers will submit a post-workshop white paper summarizing cross-track findings</li>
+        <li>Challenge infrastructure, leaderboards, and codebases will remain publicly accessible after the workshop</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-logo">CoRL 2026 <span>Workshop</span></div>
+  <p style="margin-bottom:10px;">From Simulation Benchmarks to Real-World Robot Learning</p>
+  <p>
+    Challenge websites:
+    <a href="https://behavior.stanford.edu" target="_blank">BEHAVIOR</a> ·
+    <a href="https://sites.google.com/view/corl-workshop-robochess" target="_blank">RoboChess</a> ·
+    <a href="https://robo-eval.github.io" target="_blank">RoboEval</a>
+  </p>
+  <p style="margin-top:16px; font-size:12px; color:rgba(255,255,255,0.4);">
+    Questions? Contact <a href="mailto:zhenzhenl@nvidia.com">zhenzhenl@nvidia.com</a>
+  </p>
+</footer>
+
+</body>
+</html>
