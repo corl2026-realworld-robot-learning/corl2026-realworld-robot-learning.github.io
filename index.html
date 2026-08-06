@@ -242,6 +242,23 @@
     .date-val.tbd { color: var(--muted); font-weight: 500; }
     .date-val.live { color: #059669; }
 
+    /* ─── COLLAPSIBLE ─── */
+    details.org-collapsible { margin-bottom: 20px; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    details.org-collapsible summary {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 16px 22px; cursor: pointer; list-style: none;
+      font-size: 16px; font-weight: 700; color: var(--navy);
+      background: #fff; user-select: none;
+    }
+    details.org-collapsible summary::-webkit-details-marker { display: none; }
+    details.org-collapsible summary::after {
+      content: '›'; font-size: 22px; color: var(--muted);
+      transition: transform 0.2s; transform: rotate(90deg);
+    }
+    details.org-collapsible[open] summary::after { transform: rotate(270deg); }
+    details.org-collapsible summary:hover { background: var(--light); }
+    details.org-collapsible .org-grid { padding: 20px 22px 24px; border-top: 1px solid var(--border); }
+
     /* ─── ORGANIZERS ─── */
     .org-section { margin-bottom: 48px; }
     .org-section h3 {
@@ -787,8 +804,8 @@
     </div>
 
     <!-- Track 1: BEHAVIOR -->
-    <div class="org-section">
-      <h3>🏠 Track 1 — BEHAVIOR Challenge</h3>
+    <details class="org-collapsible">
+      <summary>🏠 Track 1 — BEHAVIOR Challenge</summary>
       <div class="org-grid">
         <div class="org-card">
           <div class="org-avatar has-photo"><img src="https://behavior.stanford.edu/assets/people/li_fei_fei.jpg" alt="Fei-Fei Li"></div>
@@ -855,11 +872,11 @@
           <div class="org-info"><h4>Hang Yin</h4><p>OpenAI</p></div>
         </div>
       </div>
-    </div>
+    </details>
 
     <!-- Track 2: RoboEval -->
-    <div class="org-section">
-      <h3>🤖 Track 2 — RoboEval Challenge</h3>
+    <details class="org-collapsible">
+      <summary>🤖 Track 2 — RoboEval Challenge</summary>
       <div class="org-grid">
         <div class="org-card">
           <div class="org-avatar has-photo"><img src="https://helen9975.github.io/images/profile.jpg" alt="Yi Ru Wang"></div>
@@ -922,11 +939,11 @@
           <div class="org-info"><h4>Yuquan Deng</h4><p>Allen Institute for AI</p></div>
         </div>
       </div>
-    </div>
+    </details>
 
     <!-- Track 3: RoboChess -->
-    <div class="org-section">
-      <h3>♟️ Track 3 — RoboChess Challenge</h3>
+    <details class="org-collapsible">
+      <summary>♟️ Track 3 — RoboChess Challenge</summary>
       <div class="org-grid">
         <div class="org-card">
           <div class="org-avatar has-photo"><img src="https://scholar.googleusercontent.com/citations?view_op=view_photo&user=6LYI6uUAAAAJ&citpid=5" alt="Zhenzhen Li"></div>
@@ -953,7 +970,7 @@
           <div class="org-info"><h4>Yuheng Li</h4><p>Adobe Research</p></div>
         </div>
       </div>
-    </div>
+    </details>
 
   </div>
 </section>
