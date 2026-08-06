@@ -333,10 +333,9 @@
     <div class="nav-links">
       <a href="#home">Home</a>
       <a href="#about">About</a>
-      <a href="#challenges">Challenges</a>
       <a href="#speakers">Speakers</a>
       <a href="#schedule">Schedule</a>
-      <a href="#dates">Dates</a>
+      <a href="#challenges">Challenges</a>
       <a href="#organizers">Organizers</a>
       <a href="#sponsors">Sponsors</a>
     </div>
@@ -434,99 +433,6 @@
         outcome, efficiency, robustness, safety, computational-cost, and reproducibility measures, synthesized
         into a community white paper.
       </p>
-    </div>
-  </div>
-</section>
-
-<!-- ─── CHALLENGE TRACKS ─── -->
-<section id="challenges">
-  <div class="section-inner">
-    <div class="section-head">
-      <div class="section-label">Challenge Suite</div>
-      <h2>Three Challenge Tracks</h2>
-      <p>Independent leaderboards, codebases, and prize structures—unified by a shared evaluation protocol.</p>
-    </div>
-
-    <div class="tracks-grid">
-
-      <!-- Track 1: BEHAVIOR -->
-      <div class="track-card t1">
-        <div class="track-num">Track 1</div>
-        <div class="track-icon">🏠</div>
-        <h3>BEHAVIOR Long-Horizon Household Challenge</h3>
-        <p class="track-tagline">Generalist embodied AI in house-scale everyday scenes</p>
-        <p>1,000 household activities across 50 scenes and 10,000 objects, powered by the
-           Isaac Sim–based BEHAVIOR simulator. Agents must reason, navigate, and execute
-           dexterous bimanual manipulation over long horizons.</p>
-        <p><strong>Evaluation:</strong> Task completion rate, efficiency (total movements),
-           20,000 near-optimal human-demonstrated trajectories with stage-level language annotations.</p>
-        <div class="track-tags">
-          <span class="tag">Long-Horizon</span>
-          <span class="tag">Bimanual</span>
-          <span class="tag">Navigation</span>
-          <span class="tag">IsaacSim</span>
-        </div>
-        <a class="track-link" href="https://behavior.stanford.edu" target="_blank">behavior.stanford.edu ↗</a>
-      </div>
-
-      <!-- Track 2: RoboEval -->
-      <div class="track-card t2">
-        <div class="track-num">Track 2</div>
-        <div class="track-icon">🤖</div>
-        <h3>RoboEval Diagnostic Bimanual Challenge</h3>
-        <p class="track-tagline">Stage-level failure diagnosis for bimanual manipulation</p>
-        <p>A structured evaluation framework for bimanual robotic manipulation that augments
-           binary success with behavioral and outcome metrics. Every task is instrumented with
-           stage definitions to localize failure modes and test robustness to spatial variation.</p>
-        <p><strong>Evaluation:</strong> Outcome (stage completion), Efficiency, Bimanual Coordination,
-           Safety &amp; Stability. 3,000+ VR-teleoperated expert demonstrations.</p>
-        <div class="track-tags">
-          <span class="tag">Bimanual</span>
-          <span class="tag">Stage-Level</span>
-          <span class="tag">Failure Analysis</span>
-          <span class="tag">MuJoCo</span>
-        </div>
-        <a class="track-link" href="https://robo-eval.github.io" target="_blank">robo-eval.github.io ↗</a>
-      </div>
-
-      <!-- Track 3: RoboChess -->
-      <div class="track-card t3">
-        <div class="track-num">Track 3</div>
-        <div class="track-icon">♟️</div>
-        <h3>RoboChess Sim-to-Real Manipulation Challenge</h3>
-        <p class="track-tagline">From simulation training to real-world robot deployment</p>
-        <p>Policies are trained in GPU-accelerated simulation and must generalize to physical robot
-           hardware. Agents perceive a chessboard, plan long-horizon move sequences, and execute
-           dexterous piece manipulation across multiple real-world robot embodiments.</p>
-        <p><strong>Evaluation:</strong> Standardized manipulation metrics measuring planning accuracy,
-           perception robustness, and execution reliability under real-world perturbations.</p>
-        <div class="track-tags">
-          <span class="tag">Sim-to-Real</span>
-          <span class="tag">GPU-Accelerated</span>
-          <span class="tag">Multi-Embodiment</span>
-          <span class="tag">Real-World</span>
-        </div>
-        <a class="track-link" href="https://sites.google.com/view/corl-workshop-robochess" target="_blank">Challenge Website ↗</a>
-      </div>
-
-    </div>
-
-    <!-- Shared metrics banner -->
-    <div style="margin-top:36px; background:var(--navy); color:#fff; border-radius:10px; padding:24px 32px;">
-      <div style="display:flex; flex-wrap:wrap; gap:24px; align-items:center;">
-        <div style="flex:1; min-width:200px;">
-          <div style="font-size:13px; color:rgba(255,255,255,0.6); margin-bottom:4px; letter-spacing:0.05em; text-transform:uppercase;">Shared Cross-Track Metrics</div>
-          <div style="font-size:16px; font-weight:600;">Unified Evaluation Protocol</div>
-        </div>
-        <div style="display:flex; flex-wrap:wrap; gap:10px;">
-          <span style="background:rgba(255,255,255,0.12); border-radius:5px; padding:6px 14px; font-size:13px;">✓ Outcome &amp; Completion</span>
-          <span style="background:rgba(255,255,255,0.12); border-radius:5px; padding:6px 14px; font-size:13px;">✓ Efficiency</span>
-          <span style="background:rgba(255,255,255,0.12); border-radius:5px; padding:6px 14px; font-size:13px;">✓ Robustness</span>
-          <span style="background:rgba(255,255,255,0.12); border-radius:5px; padding:6px 14px; font-size:13px;">✓ Safety</span>
-          <span style="background:rgba(255,255,255,0.12); border-radius:5px; padding:6px 14px; font-size:13px;">✓ Compute Cost</span>
-          <span style="background:rgba(255,255,255,0.12); border-radius:5px; padding:6px 14px; font-size:13px;">✓ Reproducibility</span>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -660,83 +566,113 @@
   </div>
 </section>
 
-<!-- ─── CHALLENGE DATES ─── -->
-<section id="dates">
+<!-- ─── CHALLENGE TRACKS ─── -->
+<section id="challenges">
   <div class="section-inner">
     <div class="section-head">
-      <div class="section-label">Important Dates</div>
-      <h2>Challenge Timeline</h2>
-      <p>Key dates for each challenge track. Visit the individual challenge pages for the latest updates.</p>
+      <div class="section-label">Challenge Suite</div>
+      <h2>Three Challenge Tracks</h2>
+      <p>Independent leaderboards, codebases, and prize structures — unified by a shared evaluation protocol.</p>
     </div>
 
-    <div class="dates-tracks">
+    <div class="tracks-grid">
 
       <!-- Track 1: BEHAVIOR -->
-      <div class="dates-track-card">
-        <h3>🏠 Track 1 — BEHAVIOR</h3>
-        <div class="date-item">
-          <span class="date-label">Challenge Launch</span>
-          <span class="date-val live">Live Now 🟢</span>
+      <div class="track-card t1">
+        <div class="track-num">Track 1</div>
+        <div class="track-icon">🏠</div>
+        <h3>BEHAVIOR Long-Horizon Household Challenge</h3>
+        <p class="track-tagline">Generalist embodied AI in house-scale everyday scenes</p>
+        <p>1,000 household activities across 50 scenes and 10,000 objects, powered by the
+           Isaac Sim–based BEHAVIOR simulator. Agents must reason, navigate, and execute
+           dexterous bimanual manipulation over long horizons.</p>
+        <p><strong>Evaluation:</strong> Task completion rate, efficiency (total movements),
+           20,000 near-optimal human-demonstrated trajectories with stage-level language annotations.</p>
+        <div class="track-tags">
+          <span class="tag">Long-Horizon</span>
+          <span class="tag">Bimanual</span>
+          <span class="tag">Navigation</span>
+          <span class="tag">IsaacSim</span>
         </div>
-        <div class="date-item">
-          <span class="date-label">Submission Deadline</span>
-          <span class="date-val tbd">See website</span>
+        <div style="margin-top:18px; padding-top:14px; border-top:1px solid #ede9fe;">
+          <div class="date-item"><span class="date-label" style="font-size:13px;">Challenge Launch</span><span class="date-val live" style="font-size:12.5px;">Live Now 🟢</span></div>
+          <div class="date-item"><span class="date-label" style="font-size:13px;">Submission Deadline</span><span class="date-val tbd" style="font-size:12.5px;">See website</span></div>
+          <div class="date-item"><span class="date-label" style="font-size:13px;">Winners Announced</span><span class="date-val tbd" style="font-size:12.5px;">See website</span></div>
+          <div class="date-item" style="border-bottom:none;"><span class="date-label" style="font-size:13px;">Workshop</span><span class="date-val" style="font-size:12.5px;">Nov 12, 2026</span></div>
         </div>
-        <div class="date-item">
-          <span class="date-label">Winners Announced</span>
-          <span class="date-val tbd">See website</span>
-        </div>
-        <div class="date-item">
-          <span class="date-label">Workshop</span>
-          <span class="date-val">Nov 12, 2026</span>
-        </div>
-        <a href="https://behavior.stanford.edu" target="_blank" style="display:inline-block; margin-top:14px; font-size:13px; font-weight:600; color:var(--track1); text-decoration:none;">behavior.stanford.edu ↗</a>
+        <a class="track-link" href="https://behavior.stanford.edu" target="_blank">behavior.stanford.edu ↗</a>
       </div>
 
       <!-- Track 2: RoboEval -->
-      <div class="dates-track-card">
-        <h3>🤖 Track 2 — RoboEval</h3>
-        <div class="date-item">
-          <span class="date-label">Challenge Launch</span>
-          <span class="date-val tbd">See website</span>
+      <div class="track-card t2">
+        <div class="track-num">Track 2</div>
+        <div class="track-icon">🤖</div>
+        <h3>RoboEval Diagnostic Bimanual Challenge</h3>
+        <p class="track-tagline">Stage-level failure diagnosis for bimanual manipulation</p>
+        <p>A structured evaluation framework for bimanual robotic manipulation that augments
+           binary success with behavioral and outcome metrics. Every task is instrumented with
+           stage definitions to localize failure modes and test robustness to spatial variation.</p>
+        <p><strong>Evaluation:</strong> Outcome (stage completion), Efficiency, Bimanual Coordination,
+           Safety &amp; Stability. 3,000+ VR-teleoperated expert demonstrations.</p>
+        <div class="track-tags">
+          <span class="tag">Bimanual</span>
+          <span class="tag">Stage-Level</span>
+          <span class="tag">Failure Analysis</span>
+          <span class="tag">MuJoCo</span>
         </div>
-        <div class="date-item">
-          <span class="date-label">Submission Deadline</span>
-          <span class="date-val tbd">See website</span>
+        <div style="margin-top:18px; padding-top:14px; border-top:1px solid #e0f2fe;">
+          <div class="date-item"><span class="date-label" style="font-size:13px;">Challenge Launch</span><span class="date-val tbd" style="font-size:12.5px;">See website</span></div>
+          <div class="date-item"><span class="date-label" style="font-size:13px;">Submission Deadline</span><span class="date-val tbd" style="font-size:12.5px;">See website</span></div>
+          <div class="date-item"><span class="date-label" style="font-size:13px;">Winners Announced</span><span class="date-val tbd" style="font-size:12.5px;">See website</span></div>
+          <div class="date-item" style="border-bottom:none;"><span class="date-label" style="font-size:13px;">Workshop</span><span class="date-val" style="font-size:12.5px;">Nov 12, 2026</span></div>
         </div>
-        <div class="date-item">
-          <span class="date-label">Winners Announced</span>
-          <span class="date-val tbd">See website</span>
-        </div>
-        <div class="date-item">
-          <span class="date-label">Workshop</span>
-          <span class="date-val">Nov 12, 2026</span>
-        </div>
-        <a href="https://robo-eval.github.io" target="_blank" style="display:inline-block; margin-top:14px; font-size:13px; font-weight:600; color:#0369a1; text-decoration:none;">robo-eval.github.io ↗</a>
+        <a class="track-link" href="https://robo-eval.github.io" target="_blank">robo-eval.github.io ↗</a>
       </div>
 
       <!-- Track 3: RoboChess -->
-      <div class="dates-track-card">
-        <h3>♟️ Track 3 — RoboChess</h3>
-        <div class="date-item">
-          <span class="date-label">Challenge Launch</span>
-          <span class="date-val tbd">TBD — Summer 2026</span>
+      <div class="track-card t3">
+        <div class="track-num">Track 3</div>
+        <div class="track-icon">♟️</div>
+        <h3>RoboChess Sim-to-Real Manipulation Challenge</h3>
+        <p class="track-tagline">From simulation training to real-world robot deployment</p>
+        <p>Policies are trained in GPU-accelerated simulation and must generalize to physical robot
+           hardware. Agents perceive a chessboard, plan long-horizon move sequences, and execute
+           dexterous piece manipulation across multiple real-world robot embodiments.</p>
+        <p><strong>Evaluation:</strong> Standardized manipulation metrics measuring planning accuracy,
+           perception robustness, and execution reliability under real-world perturbations.</p>
+        <div class="track-tags">
+          <span class="tag">Sim-to-Real</span>
+          <span class="tag">GPU-Accelerated</span>
+          <span class="tag">Multi-Embodiment</span>
+          <span class="tag">Real-World</span>
         </div>
-        <div class="date-item">
-          <span class="date-label">Submission Deadline</span>
-          <span class="date-val tbd">TBD — Fall 2026</span>
+        <div style="margin-top:18px; padding-top:14px; border-top:1px solid #dcfce7;">
+          <div class="date-item"><span class="date-label" style="font-size:13px;">Challenge Launch</span><span class="date-val tbd" style="font-size:12.5px;">TBD — Summer 2026</span></div>
+          <div class="date-item"><span class="date-label" style="font-size:13px;">Submission Deadline</span><span class="date-val tbd" style="font-size:12.5px;">TBD — Fall 2026</span></div>
+          <div class="date-item"><span class="date-label" style="font-size:13px;">Winners Announced</span><span class="date-val" style="font-size:12.5px;">Nov 9, 2026</span></div>
+          <div class="date-item" style="border-bottom:none;"><span class="date-label" style="font-size:13px;">Workshop</span><span class="date-val" style="font-size:12.5px;">Nov 12, 2026</span></div>
         </div>
-        <div class="date-item">
-          <span class="date-label">Winners Announced</span>
-          <span class="date-val">Nov 9, 2026</span>
-        </div>
-        <div class="date-item">
-          <span class="date-label">Workshop</span>
-          <span class="date-val">Nov 12, 2026</span>
-        </div>
-        <a href="https://sites.google.com/view/corl-workshop-robochess" target="_blank" style="display:inline-block; margin-top:14px; font-size:13px; font-weight:600; color:var(--track3); text-decoration:none;">Challenge Website ↗</a>
+        <a class="track-link" href="https://sites.google.com/view/corl-workshop-robochess" target="_blank">Challenge Website ↗</a>
       </div>
 
+    </div>
+
+    <!-- Shared metrics banner -->
+    <div style="margin-top:36px; background:var(--navy); color:#fff; border-radius:10px; padding:24px 32px;">
+      <div style="display:flex; flex-wrap:wrap; gap:24px; align-items:center;">
+        <div style="flex:1; min-width:200px;">
+          <div style="font-size:13px; color:rgba(255,255,255,0.6); margin-bottom:4px; letter-spacing:0.05em; text-transform:uppercase;">Shared Cross-Track Metrics</div>
+          <div style="font-size:16px; font-weight:600;">Unified Evaluation Protocol</div>
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:10px;">
+          <span style="background:rgba(255,255,255,0.12); border-radius:5px; padding:6px 14px; font-size:13px;">✓ Outcome &amp; Completion</span>
+          <span style="background:rgba(255,255,255,0.12); border-radius:5px; padding:6px 14px; font-size:13px;">✓ Efficiency</span>
+          <span style="background:rgba(255,255,255,0.12); border-radius:5px; padding:6px 14px; font-size:13px;">✓ Robustness</span>
+          <span style="background:rgba(255,255,255,0.12); border-radius:5px; padding:6px 14px; font-size:13px;">✓ Safety</span>
+          <span style="background:rgba(255,255,255,0.12); border-radius:5px; padding:6px 14px; font-size:13px;">✓ Compute Cost</span>
+          <span style="background:rgba(255,255,255,0.12); border-radius:5px; padding:6px 14px; font-size:13px;">✓ Reproducibility</span>
+        </div>
+      </div>
     </div>
 
     <!-- Prizes -->
@@ -745,7 +681,6 @@
       <p style="margin-top:8px; font-size:14.5px; color:#374151;">
         For details on challenge prizes, compute credits, and travel grants, please visit the individual challenge pages.
       </p>
-      <a href="#challenges" style="display:inline-block; margin-top:12px; background:var(--navy); color:#fff; text-decoration:none; padding:10px 24px; border-radius:7px; font-weight:600; font-size:14px;">View Challenge Pages ↗</a>
     </div>
   </div>
 </section>
