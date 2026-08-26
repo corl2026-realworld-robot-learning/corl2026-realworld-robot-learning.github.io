@@ -40,8 +40,9 @@ All three tracks report a unified set of measures to enable cross-benchmark comp
 ### Paper Track
 | Milestone | Date |
 |-----------|------|
-| Paper Submission Deadline | **September 20, 2026** |
-| Acceptance Notification | **October 4, 2026** |
+| Submission Open | **August 26, 2026** |
+| Paper Submission Deadline | **October 9, 2026** |
+| Acceptance Notification | **October 23, 2026** |
 | Final Schedule Announced | **November 1, 2026** |
 | Workshop | **November 12, 2026** |
 
@@ -59,24 +60,28 @@ All three tracks report a unified set of measures to enable cross-benchmark comp
 
 | Name | Affiliation | Status |
 |------|-------------|--------|
-| [Fei-Fei Li](https://profiles.stanford.edu/fei-fei-li) | Stanford University | In-Person |
+| [Yashraj Narang](https://scholar.google.com/citations?user=M3NuG7AAAAAJ) | NVIDIA | In-Person |
 | [Guannan Qu](https://www.guannanqu.com/) | Carnegie Mellon University | In-Person |
+| [Yilun Du](https://yilundu.github.io/) | Harvard University | In-Person |
 | [Chen Tang](https://scholar.google.com/citations?user=x78TL58AAAAJ) | UC Los Angeles | In-Person |
-| [Yilun Du](https://yilundu.github.io/) | Harvard University | Pending |
 
 ---
 
 ## 📝 Call for Papers
 
-We welcome **short papers (up to 5 pages, excluding references)** on topics including:
+We invite short papers on simulation, benchmarking, and real-world robot learning, with particular interest in work that connects scalable evaluation in simulation to meaningful robot capabilities and real-world performance.
 
-- Robot learning systems addressing evaluation, robustness, and sim-to-real transfer
-- Novel simulation benchmarks, environments, or evaluation protocols for embodied AI
-- Empirical results on reproducible benchmarks or standardized evaluation methods
-- Technical reports from challenge participants (Tracks 1, 2, and 3)
-- Foundation models and large-scale pretraining pipelines for robot learning
+**Format:** short papers, up to 5 pages excluding references.
 
-Submissions via **OpenReview** (link coming soon). Accepted papers will be presented as spotlights or posters with a strong emphasis on interactive discussion.
+### Topics of Interest
+- Simulation environments and benchmarks for scalable robot learning and evaluation
+- Diagnostic and fine-grained evaluation, including capability metrics, failure analysis, robustness, and reproducibility
+- Sim-to-real transfer and validation, including domain shift, adaptation, and studies connecting simulated and real-world performance
+- Methods and empirical studies for challenging robot capabilities, including long-horizon, dexterous, bimanual, and generalist robot learning
+
+We welcome new methods, benchmarks, challenge reports, empirical studies, negative results, and position papers that help clarify when and how simulation provides reliable evidence for real-world robot learning.
+
+Submit via **[OpenReview](https://openreview.net/group?id=robot-learning.org/CoRL/2026/Workshop)**. Accepted papers will be presented as spotlights or posters with a strong emphasis on interactive discussion.
 
 ---
 
@@ -87,7 +92,7 @@ Submissions via **OpenReview** (link coming soon). Accepted papers will be prese
 |------|-------------|
 | [Zhenzhen Li](https://scholar.google.com/citations?user=6LYI6uUAAAAJ) | NVIDIA |
 | [Yizhou Zhao](https://scholar.google.com/citations?user=l1h5kY8AAAAJ) | NVIDIA |
-| [Jianwen Xie](https://scholar.google.com/citations?user=O3p4CIQAAAAJ) | Lambda, Inc. |
+| [Jianwen Xie](https://scholar.google.com/citations?user=O3p4CIQAAAAJ) | Lambda |
 | [Zijian (Leo) Du](https://scholar.google.com/citations?user=kfW01ekAAAAJ) | NVIDIA |
 | [Ruohan Zhang](https://behavior.stanford.edu) | Northwestern University |
 | [Huang (Raven) Huang](https://behavior.stanford.edu) | Stanford University |
@@ -95,10 +100,10 @@ Submissions via **OpenReview** (link coming soon). Accepted papers will be prese
 | [Jiajun Wu](https://jiajunwu.com/) | Stanford University |
 
 ### Track 1 & 3 — BEHAVIOR & RoboEval (Stanford & Partners)
-Fei-Fei Li · Jiajun Wu · Ruohan Zhang · Manling Li · Wensi Ai · Jiafei Duan · Yi Ru Wang · Huang Huang · Stef Ren · Minyeong Kim · Yalcin Tur · Andi Xu · Lynn Jin · Brenda Chen · Cem Gokmen · Chengshu Li · Josiah Wong · Hang Yin
+Fei-Fei Li · Jiajun Wu · Ruohan Zhang · Huang Huang · Wensi Ai · Stef Ren · Cem Gokmen · Yalcin Tur · Minyeong Kim · Andi Xu · Lynn Jin · Brenda Chen · Sanjana Srivastava · Chengshu Li · Josiah Wong · Hang Yin · Yi Ru Wang · Jiafei Duan · Manling Li · Ranjay Krishna · Dieter Fox · Siddhartha Srinivasa · Carter Ung · Christopher Tan · Grant Tannert · Josephine Li · Amy Le · Rishabh Oswal · Markus Grotz · Wilbert Pumacay · Yuquan Deng
 
 ### Track 2 — RoboChess (NVIDIA & Partners)
-Zhenzhen Li · Yizhou Zhao · Jianwen Xie · Zijian Du · Yuheng Li · Fangzhou Mu
+Zhenzhen Li · Yizhou Zhao · Jianwen Xie · Zijian Du · Fangzhou Mu · Yuheng Li
 
 ---
 
@@ -106,16 +111,14 @@ Zhenzhen Li · Yizhou Zhao · Jianwen Xie · Zijian Du · Yuheng Li · Fangzhou 
 
 | Time | Session |
 |------|---------|
-| 8:00 – 8:10 | Opening Remarks |
-| 8:10 – 8:30 | Keynote Talk 1 |
-| 8:30 – 9:00 | Keynote Talk 2 |
-| 9:00 – 9:15 | Track 1 & 3 Challenge Awards (BEHAVIOR & RoboEval) |
-| 9:15 – 9:30 | Challenge Winner Spotlights 1 & 2 |
-| 9:30 – 10:00 | Keynote Talk 3 |
-| 10:00 – 10:30 | Keynote Talk 4 |
-| 10:30 – 10:50 | Track 2 Challenge Awards & Spotlight (RoboChess) |
-| 10:50 – 11:00 | RoboChess Live Robot Demo |
-| 11:00 – 12:00 | Best Paper Spotlights · Poster Session · Breakout Discussion · White Paper |
+| 8:50 – 9:00 | Opening Remarks |
+| 9:00 – 9:30 | Keynote — Yashraj Narang (NVIDIA) |
+| 9:30 – 10:00 | Keynote — Guannan Qu (Carnegie Mellon University) |
+| 10:00 – 10:45 | Track 1 & 2 Challenge Awards & Spotlight — BEHAVIOR & RoboEval |
+| 10:45 – 11:15 | Keynote — Yilun Du (Harvard University) |
+| 11:15 – 11:45 | Keynote — Chen Tang (UC Los Angeles) |
+| 11:45 – 12:15 | Track 3 Challenge Awards & Spotlight & Live Demo — RoboChess |
+| 12:15 – 13:00 | Group Discussion & Poster Marketplace |
 
 ---
 
