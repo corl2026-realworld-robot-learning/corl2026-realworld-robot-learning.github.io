@@ -81,7 +81,7 @@ We invite short papers on simulation, benchmarking, and real-world robot learnin
 
 We welcome new methods, benchmarks, challenge reports, empirical studies, negative results, and position papers that help clarify when and how simulation provides reliable evidence for real-world robot learning.
 
-Submit via **[OpenReview](https://openreview.net/group?id=robot-learning.org/CoRL/2026/Workshop)**. Accepted papers will be presented as spotlights or posters with a strong emphasis on interactive discussion.
+Submit via **[OpenReview](https://openreview.net/group?id=robot-learning.org/CoRL/2026/Workshop/SimBench2Real)**. Accepted papers will be presented as spotlights or posters with a strong emphasis on interactive discussion.
 
 ---
 
