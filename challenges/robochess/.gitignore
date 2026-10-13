@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+out/
+lab/datasets/*
+!lab/datasets/.gitignore

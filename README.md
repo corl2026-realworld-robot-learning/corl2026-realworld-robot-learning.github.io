@@ -26,7 +26,7 @@ Three complementary challenge tracks with independent leaderboards, codebases, a
 |-------|------|--------|---------|
 | 🏠 **Track 1** | BEHAVIOR Long-Horizon Household Challenge | Generalist agents in house-scale scenes; reasoning, navigation, bimanual manipulation | [behavior.stanford.edu](https://behavior.stanford.edu) |
 | 🤖 **Track 2** | RoboEval Diagnostic Bimanual Challenge | Stage-level failure diagnosis; outcome, efficiency, coordination, and safety metrics | [robo-eval.github.io](https://robo-eval.github.io) |
-| ♟️ **Track 3** | RoboChess Sim-to-Real Manipulation Challenge | Robot chess with sim and real training data and evaluation | [RoboChess Challenge](robochess/) |
+| ♟️ **Track 3** | RoboChess Sim-to-Real Manipulation Challenge | Robot chess with sim and real training data and evaluation | [RoboChess Challenge](challenges/robochess/) |
 
 ### Shared Cross-Track Metrics
 All three tracks report a unified set of measures to enable cross-benchmark comparison:
@@ -124,14 +124,14 @@ Zhenzhen Li · Yizhou Zhao · Jianwen Xie · Zijian Du · Fangzhou Mu · Yuheng 
 
 ## 🌐 Website
 
-The workshop website is built with static HTML pages and hosted via GitHub Pages.
+The workshop website is built with static HTML pages and hosted via GitHub Pages. The [RoboChess challenge folder](challenges/robochess/) also contains the Newton physics and Isaac Lab implementations, shared simulation assets, and project screenshots. See its [README](challenges/robochess/README.md) for setup and provenance.
 
 **Live site:** https://corl2026-realworld-robot-learning.github.io/
 
-To update the site, edit `index.html` or the RoboChess page at `robochess/index.html`, then push to the `main` branch. GitHub Pages rebuilds automatically.
+To update the site, edit `index.html` or the RoboChess page at `challenges/robochess/index.html`, then push to the `main` branch. GitHub Pages rebuilds automatically.
 
 ```bash
-git add index.html robochess README.md
+git add index.html robochess/ challenges/robochess/ README.md .nojekyll
 git commit -m "your update message"
 git push
 ```
@@ -144,7 +144,7 @@ For questions about the workshop, please contact [zhenzhenl@nvidia.com](mailto:z
 
 For challenge-specific questions, visit the individual challenge pages:
 - [BEHAVIOR Challenge](https://behavior.stanford.edu)
-- [RoboChess Challenge](robochess/)
+- [RoboChess Challenge](challenges/robochess/)
 - [RoboEval Challenge](https://robo-eval.github.io)
 
 ---
