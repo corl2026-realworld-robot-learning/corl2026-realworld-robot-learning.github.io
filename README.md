@@ -2,7 +2,7 @@
 
 **CoRL 2026 Workshop** · Half-Day · November 12, 2026 · Austin, Texas, USA
 
-[![Workshop Website](https://img.shields.io/badge/Website-Live-2563eb?style=flat-square&logo=github)](https://zhenzhenli820.github.io/corl2026-realworld-robot-learning/)
+[![Workshop Website](https://img.shields.io/badge/Website-Live-2563eb?style=flat-square&logo=github)](https://corl2026-realworld-robot-learning.github.io/)
 [![CoRL 2026](https://img.shields.io/badge/CoRL-2026-1a3a5c?style=flat-square)](https://www.corl.org)
 [![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey?style=flat-square)](https://creativecommons.org/licenses/by/4.0/)
 
@@ -25,8 +25,8 @@ Three complementary challenge tracks with independent leaderboards, codebases, a
 | Track | Name | Focus | Website |
 |-------|------|--------|---------|
 | 🏠 **Track 1** | BEHAVIOR Long-Horizon Household Challenge | Generalist agents in house-scale scenes; reasoning, navigation, bimanual manipulation | [behavior.stanford.edu](https://behavior.stanford.edu) |
-| ♟️ **Track 2** | RoboChess Sim-to-Real Manipulation Challenge | GPU-accelerated sim training → real-world robot deployment across multiple embodiments | [corl-workshop-robochess](https://sites.google.com/view/corl-workshop-robochess) |
-| 🤖 **Track 3** | RoboEval Diagnostic Bimanual Challenge | Stage-level failure diagnosis; outcome, efficiency, coordination, and safety metrics | [robo-eval.github.io](https://robo-eval.github.io) |
+| 🤖 **Track 2** | RoboEval Diagnostic Bimanual Challenge | Stage-level failure diagnosis; outcome, efficiency, coordination, and safety metrics | [robo-eval.github.io](https://robo-eval.github.io) |
+| ♟️ **Track 3** | RoboChess Sim-to-Real Manipulation Challenge | Robot chess with sim and real training data and evaluation | [RoboChess Challenge](robochess/) |
 
 ### Shared Cross-Track Metrics
 All three tracks report a unified set of measures to enable cross-benchmark comparison:
@@ -99,10 +99,10 @@ Submit via **[OpenReview](https://openreview.net/group?id=robot-learning.org/CoR
 | [Jiafei Duan](https://jiafei1224.github.io/) | NUS |
 | [Jiajun Wu](https://jiajunwu.com/) | Stanford University |
 
-### Track 1 & 3 — BEHAVIOR & RoboEval (Stanford & Partners)
+### Track 1 & 2 — BEHAVIOR & RoboEval (Stanford & Partners)
 Fei-Fei Li · Jiajun Wu · Ruohan Zhang · Huang Huang · Wensi Ai · Stef Ren · Cem Gokmen · Yalcin Tur · Minyeong Kim · Andi Xu · Lynn Jin · Brenda Chen · Sanjana Srivastava · Chengshu Li · Josiah Wong · Hang Yin · Yi Ru Wang · Jiafei Duan · Manling Li · Ranjay Krishna · Dieter Fox · Siddhartha Srinivasa · Carter Ung · Christopher Tan · Grant Tannert · Josephine Li · Amy Le · Rishabh Oswal · Markus Grotz · Wilbert Pumacay · Yuquan Deng
 
-### Track 2 — RoboChess (NVIDIA & Partners)
+### Track 3 — RoboChess (NVIDIA & Partners)
 Zhenzhen Li · Yizhou Zhao · Jianwen Xie · Zijian Du · Fangzhou Mu · Yuheng Li
 
 ---
@@ -124,14 +124,14 @@ Zhenzhen Li · Yizhou Zhao · Jianwen Xie · Zijian Du · Fangzhou Mu · Yuheng 
 
 ## 🌐 Website
 
-The workshop website is built as a single-page static HTML site and hosted via GitHub Pages.
+The workshop website is built with static HTML pages and hosted via GitHub Pages.
 
-**Live site:** https://zhenzhenli820.github.io/corl2026-realworld-robot-learning/
+**Live site:** https://corl2026-realworld-robot-learning.github.io/
 
-To update the site, edit `index.html` and push to the `main` branch — GitHub Pages rebuilds automatically within ~1 minute.
+To update the site, edit `index.html` or the RoboChess page at `robochess/index.html`, then push to the `main` branch. GitHub Pages rebuilds automatically.
 
 ```bash
-git add index.html
+git add index.html robochess README.md
 git commit -m "your update message"
 git push
 ```
@@ -144,7 +144,7 @@ For questions about the workshop, please contact [zhenzhenl@nvidia.com](mailto:z
 
 For challenge-specific questions, visit the individual challenge pages:
 - [BEHAVIOR Challenge](https://behavior.stanford.edu)
-- [RoboChess Challenge](https://sites.google.com/view/corl-workshop-robochess)
+- [RoboChess Challenge](robochess/)
 - [RoboEval Challenge](https://robo-eval.github.io)
 
 ---
@@ -160,7 +160,7 @@ If you find this workshop or challenge suite useful in your research, please con
   year      = {2026},
   month     = {November},
   address   = {Austin, Texas, USA},
-  url       = {https://zhenzhenli820.github.io/corl2026-realworld-robot-learning/}
+  url       = {https://corl2026-realworld-robot-learning.github.io/}
 }
 ```
 
