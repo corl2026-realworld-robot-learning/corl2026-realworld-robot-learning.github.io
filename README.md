@@ -25,7 +25,7 @@ Three complementary challenge tracks with independent leaderboards, codebases, a
 | Track | Name | Focus | Website |
 |-------|------|--------|---------|
 | 🏠 **Track 1** | BEHAVIOR Long-Horizon Household Challenge | Generalist agents in house-scale scenes; reasoning, navigation, bimanual manipulation | [behavior.stanford.edu](https://behavior.stanford.edu) |
-| 🤖 **Track 2** | RoboEval Diagnostic Bimanual Challenge | Stage-level failure diagnosis; outcome, efficiency, coordination, and safety metrics | [robo-eval.github.io](https://robo-eval.github.io) |
+| 🤖 **Track 2** | RoboEval Diagnostic Bimanual Challenge | Stage-level failure diagnosis; ranked by the RoboEval Diagnostic Score (outcome, safety, efficiency, coordination) | [robo-eval.github.io/challenge.html](https://robo-eval.github.io/challenge.html) |
 | ♟️ **Track 3** | RoboChess Sim-to-Real Manipulation Challenge | Robot chess with sim and real training data and evaluation | [RoboChess Challenge](challenges/robochess/) |
 
 ### Shared Cross-Track Metrics
@@ -145,7 +145,7 @@ For questions about the workshop, please contact [zhenzhenl@nvidia.com](mailto:z
 For challenge-specific questions, visit the individual challenge pages:
 - [BEHAVIOR Challenge](https://behavior.stanford.edu)
 - [RoboChess Challenge](challenges/robochess/)
-- [RoboEval Challenge](https://robo-eval.github.io)
+- [RoboEval Challenge](https://robo-eval.github.io/challenge.html)
 
 ---
 
