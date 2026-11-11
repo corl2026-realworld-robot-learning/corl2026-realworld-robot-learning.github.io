@@ -1,6 +1,6 @@
 # From Simulation Benchmarks to Real-World Robot Learning
 
-**CoRL 2026 Workshop** · Half-Day · November 12, 2026 · Austin, Texas, USA
+**CoRL 2026 Workshop** · Half-Day · November 12, 2026, 8:30 AM – 12:30 PM (CST) · JW Marriott Room 212 (Level 2), Austin, Texas, USA
 
 [![Workshop Website](https://img.shields.io/badge/Website-Live-2563eb?style=flat-square&logo=github)](https://corl2026-realworld-robot-learning.github.io/)
 [![CoRL 2026](https://img.shields.io/badge/CoRL-2026-1a3a5c?style=flat-square)](https://www.corl.org)
@@ -109,6 +109,8 @@ Zhenzhen Li · Yizhou Zhao · Jianwen Xie · Zijian Du · Fangzhou Mu · Yuheng 
 
 ## 🗓️ Workshop Schedule (Nov 12, 2026)
 
+📍 **Talks:** JW Marriott Room 212 (Level 2) · 🖼️ **Poster Session:** Griffin Ballroom (Level 2) · All times CST
+
 | Time | Session |
 |------|---------|
 | 8:30 – 8:35 | Opening Remarks |
@@ -116,7 +118,7 @@ Zhenzhen Li · Yizhou Zhao · Jianwen Xie · Zijian Du · Fangzhou Mu · Yuheng 
 | 9:05 – 9:35 | Invited Talk — Guannan Qu (Carnegie Mellon University): *The Power of Test-Time Sampling: From Simulators to World Models* |
 | 9:35 – 9:55 | Track 1 — BEHAVIOR Challenge |
 | 9:55 – 10:15 | Simulation Benchmark Lightning Talks — #9, #37, #26, #14, #19, #16; Policy Learning Lightning Talks — #7, #13, #39, #60 |
-| 10:15 – 10:45 | Poster Session & Coffee Break — Griffin Ballroom |
+| 10:15 – 10:45 | Poster Session & Coffee Break — Griffin Ballroom (Level 2) |
 | 10:45 – 11:15 | Invited Talk — Yilun Du (Harvard University): *Scaling Robot Learning through Online Exploration* |
 | 11:15 – 11:45 | Invited Talk — Chen Tang (UC Los Angeles): *Making Robot Policies More Deployable: From Simulation to the Real World* |
 | 11:45 – 12:05 | Track 2 — RoboEval Challenge |
