@@ -117,12 +117,12 @@ Zhenzhen Li · Yizhou Zhao · Jianwen Xie · Zijian Du · Fangzhou Mu · Yuheng 
 | 8:35 – 9:05 | Invited Talk — Yashraj Narang (NVIDIA): *Rethinking Sim-to-Real* |
 | 9:05 – 9:35 | Invited Talk — Guannan Qu (Carnegie Mellon University): *The Power of Test-Time Sampling: From Simulators to World Models* |
 | 9:35 – 9:55 | Track 1 — BEHAVIOR Challenge |
-| 9:55 – 10:15 | Simulation Benchmark Lightning Talks — #9, #37, #26, #14, #19, #16; Policy Learning Lightning Talks — #7, #13, #39, #60 |
+| 9:55 – 10:15 | Simulation Benchmark Lightning Talks — #26, #16, #19, #14; Policy Learning Lightning Talks — #7, #13, #60 |
 | 10:15 – 10:45 | Poster Session & Coffee Break — Griffin Ballroom (Level 2) |
 | 10:45 – 11:15 | Invited Talk — Yilun Du (Harvard University): *Scaling Robot Learning through Online Exploration* |
 | 11:15 – 11:45 | Invited Talk — Chen Tang (UC Los Angeles): *Making Robot Policies More Deployable: From Simulation to the Real World* |
 | 11:45 – 12:05 | Track 2 — RoboEval Challenge |
-| 12:05 – 12:25 | Sim2Real Lightning Talks — #55, #5, #51, #44, #18, #8 |
+| 12:05 – 12:25 | Sim2Real Lightning Talks — #8, #5, #18, #44, #51 |
 | 12:25 – 12:30 | Closing Remarks |
 
 ---
