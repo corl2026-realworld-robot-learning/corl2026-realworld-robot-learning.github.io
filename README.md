@@ -122,7 +122,7 @@ Zhenzhen Li · Yizhou Zhao · Jianwen Xie · Zijian Du · Fangzhou Mu · Yuheng 
 | 10:45 – 11:15 | Invited Talk — Yilun Du (Harvard University): *Scaling Robot Learning through Online Exploration* |
 | 11:15 – 11:45 | Invited Talk — Chen Tang (UC Los Angeles): *Making Robot Policies More Deployable: From Simulation to the Real World* |
 | 11:45 – 12:05 | Track 2 — RoboEval Challenge |
-| 12:05 – 12:25 | Sim2Real Lightning Talks — #8, #5, #18, #44, #51 |
+| 12:05 – 12:25 | Sim2Real Lightning Talks — #8, #5, #18, #44, #51, #55 |
 | 12:25 – 12:30 | Closing Remarks |
 
 ---
